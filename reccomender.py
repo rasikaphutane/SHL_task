@@ -15,7 +15,7 @@ tokenizer = AutoTokenizer.from_pretrained('roberta-base')
 model = AutoModel.from_pretrained('roberta-base')
 
 # Load assessments from CSV
-def load_assessments(csv_path=r'C:\Users\Isar_verse\OneDrive\Desktop\SHL_task\datasetcs.csv'):
+def load_assessments(csv_path=r'datasetcs.csv'):
     try:
         df = pd.read_csv(csv_path)
         required_columns = ['Test Name', 'Test URL', 'Remote Testing', 'Adaptive/IRT Support', 'Duration', 'Test Type']
@@ -47,7 +47,7 @@ def get_roberta_embeddings(texts):
     return embeddings
 
 # Recommend assessments based on query
-def recommend_assessments(query, max_duration=None, top_k=10, csv_path=r'C:\Users\Isar_verse\OneDrive\Desktop\SHL_task\datasetcs.csv'):
+def recommend_assessments(query, max_duration=None, top_k=10, csv_path=r'datasetcs.csv'):
     df = load_assessments(csv_path)
     
     # Preprocess query with minimal relevant keywords
@@ -100,7 +100,7 @@ def compute_ap_at_k(recommended, relevant, k=3):
             score += num_hits / i
     return score / min(len(relevant), k) if relevant else 0
 
-def evaluate_system(test_queries, ground_truth, csv_path=r'C:\Users\Isar_verse\OneDrive\Desktop\SHL_task\datasetcs.csv', k=3):
+def evaluate_system(test_queries, ground_truth, csv_path=r'datasetcs.csv', k=3):
     recalls = []
     aps = []
     for query, relevant in zip(test_queries, ground_truth):
@@ -148,7 +148,7 @@ if __name__ == "__main__":
         print(f"MAP@3: {map_k:.4f}")
         # Manual test for Query 1
         query = "I am hiring for Java developers who can also collaborate effectively with my business teams. Looking for an assessment(s) that can be completed in 40 minutes."
-        recommendations = recommend_assessments(query, max_duration=40, csv_path=r'C:\Users\Isar_verse\OneDrive\Desktop\SHL_task\datasetcs.csv')
+        recommendations = recommend_assessments(query, max_duration=40, csv_path=r'datasetcs.csv')
         print("\nManual Test for Query 1:")
         print(recommendations)
     except Exception as e:
