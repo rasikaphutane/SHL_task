@@ -1,7 +1,8 @@
-streamlit
-transformers
-sentence-transformers
+fastapi
+uvicorn[standard]
 pandas
 scikit-learn
+sentence-transformers
+torch
+transformers
 beautifulsoup4
-requests
