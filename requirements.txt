@@ -1,7 +1,7 @@
 streamlit
+transformers
+sentence-transformers
 pandas
 scikit-learn
-sentence-transformers
-torch
-transformers
-spacy
+beautifulsoup4
+requests
